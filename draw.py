@@ -7,6 +7,7 @@ This is a temporary script file.
 
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 #%% 从Excel中抽取数据
 
@@ -19,7 +20,7 @@ x_line = df[x_name]
 y_line = df[y_name]
 
 #%% 绘制图形
-style_d = [y_name,]
+
 sns.lineplot(x=x_line, y=y_line, marker="o", color='black', 
              markersize=8, 
              # markerfacecolor='none', markeredgecolor='black', 
@@ -29,4 +30,6 @@ sns.set_theme(style='ticks', font_scale=1.1)
 # sns.set_style('ticks')
 # sns.despine()   #移除上、右边框
 
+#%% 保存图片为EPS格式
 
+plt.savefig("Plot-output.eps", dpi=600)
