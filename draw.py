@@ -21,6 +21,12 @@ y_line = df[y_name]
 #%% 绘制图形
 style_d = [y_name,]
 sns.lineplot(x=x_line, y=y_line, marker="o", color='black', 
-             markersize=8, linewidth=1).set(
+             markersize=8, 
+             # markerfacecolor='none', markeredgecolor='black', 
+             linewidth=1).set(
                  xlabel='Number of QPs', ylabel='Throuthput (Gb/s)')
-sns.set_theme(style='white', font_scale=1.1)
+sns.set_theme(style='ticks', font_scale=1.1)
+# sns.set_style('ticks')
+# sns.despine()   #移除上、右边框
+
+
