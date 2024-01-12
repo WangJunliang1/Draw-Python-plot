@@ -7,6 +7,7 @@ Spyder Editor
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import numpy as np
 
 #%% 从Excel中抽取数据
 
@@ -34,8 +35,8 @@ def Draw_first():
                  # markerfacecolor='none', markeredgecolor='black', 
                  linewidth=1).set(
                      xlabel='Number of QPs on NIC', ylabel='NIC Throuthput (Gb/s)')
-    sns.set_theme(style='ticks', font_scale=1.1)
-    # sns.set_style('ticks')
+    sns.set_theme(style='ticks', font_scale=1.2)
+        
     # sns.despine()   #移除上、右边框
     
     # 保存图片为EPS格式
@@ -53,10 +54,15 @@ def Draw_Second():
                  # markerfacecolor='none', markeredgecolor='black', 
                  linewidth=1).set(
                      xlabel='Number of Servers in Cluster', ylabel='Loss Rate')
-    plt.yscale('log')   #设置为对数轴显示
     
-    sns.set_theme(style='ticks', font_scale=1.1)
-    # sns.set_style('ticks')
+    #设置为对数轴显示
+    plt.yscale('log')   
+    
+    # 设置x轴刻度频率
+    plt.xticks(ticks=np.arange(0, max(x1_line)+1, 5000))
+    
+    sns.set_theme(style='ticks', font_scale=1.2)
+
     # sns.despine()   #移除上、右边框
     
     # 保存图片为EPS格式
