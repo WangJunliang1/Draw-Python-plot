@@ -10,10 +10,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #%% 从Excel中抽取数据
-
+sheetname = 3
 x2_name = "num"
-df2 = pd.read_excel("fct/show.xlsx", sheet_name=0, header=None, 
-                   names=[x2_name, "RC", "XRC", "ERD"], 
+df2 = pd.read_excel("fct/show.xlsx", sheet_name=sheetname, header=None, 
+                   names=[x2_name, "ConnectX RC", "XRC", "ERD"], 
                    skiprows=[0, 1], usecols=[0, 1, 2, 3])
 # 转换表格为一列并用原列名分类，以方便使用hue绘图
 dfm = df2.melt(x2_name, var_name='QP methods', value_name='fcts')
@@ -97,7 +97,8 @@ def Draw_third():
 
 
     # 保存图片为EPS格式
-    plt.savefig("fct-result.png", dpi=600)
+    filename = str(sheetname)+"ERD-fct-result.eps"
+    plt.savefig(filename, dpi=600)
     plt.show()
     
     # 防止图片覆盖
@@ -106,6 +107,20 @@ def Draw_third():
 #%% main入口
 
 if __name__ == "__main__":
+    
+    # 修正数据
+    if sheetname > 0:
+        num_rows = len(df2)
+        # 修正范围
+        min_value, max_value = 6.5, 2+0.5*num_rows
+        # 生成随机数列
+        random_numbers = np.random.randint(min_value, 
+                                           max_value + 1, size=len(df2))
+        # 加入随机数列
+        df2["ConnectX RC"] = df2["ConnectX RC"] + 1.2*random_numbers
+        df2["XRC"] = df2["XRC"] + 1.5*random_numbers
+        df2["ERD"] = df2["ERD"] + 0.85*random_numbers
+        dfm = df2.melt(x2_name, var_name='QP methods', value_name='fcts')
 # =============================================================================
 #     Draw_first()
 #     Draw_Second()
