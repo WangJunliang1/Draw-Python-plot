@@ -79,7 +79,7 @@ if __name__ == "__main__":
         dfm = df2.melt("num", var_name='QP methods', value_name='Throughput')
         
                 
-        Draw_third()
+        Draw_third(i)
         
         
         
